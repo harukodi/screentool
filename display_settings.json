@@ -1,0 +1,5 @@
+{
+  "default_display_mode": "extend",
+  "native_apps": ["stremio"],
+  "browser_sites": ["youtube"]
+}
