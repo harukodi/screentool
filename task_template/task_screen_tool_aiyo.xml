@@ -9,6 +9,10 @@
       <Enabled>true</Enabled>
       <StateChange>SessionUnlock</StateChange>
     </SessionStateChangeTrigger>
+    <LogonTrigger>
+      <Enabled>true</Enabled>
+      <UserId>${CURRENT_USER}</UserId>
+    </LogonTrigger>
   </Triggers>
   <Principals>
     <Principal id="Author">
