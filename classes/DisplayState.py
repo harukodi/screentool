@@ -5,6 +5,7 @@ from .DisplayManager import display_manager
 class DisplayState:
     def __init__(self):
         self.windows_watchdog_enabled = True
+        self.previous_app_active: bool | None = None
         self._lock = threading.Lock()
         self.initialize_display_configuration()
 

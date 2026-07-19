@@ -29,6 +29,7 @@ def keys_press_watchdog():
             if is_ctrl_shift_f4(pressed_keys):
                 display_state.windows_watchdog_enabled = not display_state.windows_watchdog_enabled
                 display_state.change_display_mode("extend")
+                display_state.previous_app_active = None
                 while is_ctrl_shift_f4(pressed_keys):
                     sleep(0.08)
                     
