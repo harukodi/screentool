@@ -1,4 +1,4 @@
-import psutil, os
+import psutil
 from classes.DisplayState import display_state
 from check_if_display_mode_is_changed import check_if_display_mode_is_changed
 from windows_watchdog import windows_watchdog
