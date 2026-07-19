@@ -35,7 +35,7 @@ def get_user_defined_apps():
     with open("./display_settings.json", "r") as settings_file:
         settings = json.load(settings_file)
     native_apps = [app.lower() for app in settings["native_apps"]]
-    browser_sites = [site.lower() for site in settings["browser_sites"]]
+    browser_sites = [site.lower().replace(" ", "") for site in settings["browser_sites"]]
 
 def get_foreground_window_title() -> str | None:
     hWnd = windll.user32.GetForegroundWindow()
@@ -49,13 +49,14 @@ def is_user_app_active():
     active_window_title = get_foreground_window_title()
     if not active_window_title:
         return None
-
+    
     is_browser_tab = any(browser in active_window_title for browser in BROWSER_MARKERS)
     if is_browser_tab:
         # Title belongs to a browser window: only match against browser_sites,
         # since a native app's name (e.g. "stremio") could appear in an unrelated
         # tab title and cause a false positive.
-        return any(site in active_window_title for site in browser_sites)
+        stripped_title = active_window_title.replace(" ", "")
+        return any(site in stripped_title for site in browser_sites)
     else:
         # Title belongs to a standalone app: match against native_apps.
         # Safe to use substring matching here since there's no browser tab
