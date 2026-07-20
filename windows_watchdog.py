@@ -84,7 +84,7 @@ def windows_watchdog():
             if app_active != display_state.previous_app_active:
                 target_mode = "internal" if app_active else "extend"
                 # Skip the switch entirely if we're already on the target mode
-                if display_state.get_current_display_state != target_mode:
+                if display_state.get_current_display_state() != target_mode:
                     display_state.change_display_mode(target_mode)
                         
                 display_state.previous_app_active = app_active
